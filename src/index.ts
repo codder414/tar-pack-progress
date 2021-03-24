@@ -50,7 +50,7 @@ class ProjectsBackuper extends Command {
 		const targetDirName = path.basename(from);
 		const archiveName = path.basename(flags.to);
 		const archiveDir = path.join(path.dirname(flags.to));
-		const archivePath = path.resolve(path.join(archiveDir, './tmp', archiveName));
+		const archivePath = path.resolve(path.join(archiveDir, archiveName));
 
 		const verbose = flags.verbose;
 		const silent = flags.silent;
