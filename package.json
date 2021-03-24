@@ -11,12 +11,14 @@
     "@oclif/command": "^1.8.0",
     "@oclif/config": "^1.17.0",
     "@oclif/plugin-help": "^3.2.2",
+    "micromatch": "^4.0.2",
     "tar": "^6.1.0",
     "tar-fs": "^2.1.1",
     "tslib": "^1.14.1"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1.26.0",
+    "@types/micromatch": "^4.0.1",
     "@types/node": "^10.17.55",
     "@types/tar": "^4.0.4",
     "@types/tar-fs": "^2.0.0",
