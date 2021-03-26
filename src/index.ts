@@ -49,8 +49,13 @@ class ProjectsBackuper extends Command {
 		const from = path.resolve(flags.from);
 		const targetDirName = path.basename(from);
 		const archiveName = path.basename(flags.to);
-		const archiveDir = path.join(path.dirname(flags.to));
+		const archiveDir = path.dirname(flags.to);
 		const archivePath = path.resolve(path.join(archiveDir, archiveName));
+
+		const error = await checkDirPath(path.resolve(archiveDir));
+		if (error) {
+			this.error(error);
+		}
 
 		const verbose = flags.verbose;
 		const silent = flags.silent;
@@ -101,7 +106,7 @@ class ProjectsBackuper extends Command {
 		archive.on('data', (chunk: any) => {
 			totalBytes += chunk.length;
 		});
-
+		const a = this.error;
 		const output = fs.createWriteStream(normalizedPath);
 
 		if (enableGzip) {
@@ -131,6 +136,20 @@ class ProjectsBackuper extends Command {
 function hasExtension(destPath: string): boolean {
 	const parts = destPath.split('/');
 	return parts[parts.length - 1].split('.').length > 1;
+}
+
+async function checkDirPath(dirPath: string): Promise<undefined | Error> {
+	try {
+		const stats = await fs.promises.stat(path.resolve(dirPath));
+		if (!stats.isDirectory()) {
+			return new Error(`given path is not directory: '${dirPath}'`);
+		}
+	} catch (err) {
+		if (err.code === 'ENOENT') {
+			return new Error(`no such directory '${dirPath}'`);
+		}
+		return err;
+	}
 }
 
 export = ProjectsBackuper;
