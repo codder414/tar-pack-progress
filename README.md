@@ -19,7 +19,7 @@ $ npm install -g projects_backuper
 $ bckp COMMAND
 running command...
 $ bckp (-v|--version|version)
-projects_backuper/0.1.0 linux-x64 node-v14.16.0
+projects_backuper/1.0.0 linux-x64 node-v14.16.0
 $ bckp --help [COMMAND]
 USAGE
   $ bckp COMMAND
