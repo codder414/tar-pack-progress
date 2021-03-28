@@ -56,7 +56,15 @@ async function getTotalFilesCount(
 			totalNumberOfFiles = f;
 			totalSize = s;
 		} else {
-			totalSize += (await fs.promises.stat(fullPath)).size;
+			// omit dead symbolic links
+			try {
+				const stats = await fs.promises.stat(fullPath);
+				totalSize += stats.size;
+			} catch (err) {
+				if (err.code !== 'ENOENT') {
+					throw err;
+				}
+			}
 			totalNumberOfFiles++;
 		}
 	}
