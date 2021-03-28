@@ -23,7 +23,7 @@ export function convertBytesToHuman(
 
 	const result = Math.round((remain[0] + Number.EPSILON) * tmpNum) / tmpNum;
 
-	return `${result} ${remain[1]}`;
+	return `${result.toFixed(precision)} ${remain[1]}`;
 }
 
 export function calculateCompressRatio(uncompressedSize: number, compressedSize: number): number {
