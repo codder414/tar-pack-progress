@@ -1,7 +1,7 @@
 {
   "name": "projects_backuper",
   "description": "commmand to create archives for backups ",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "nurik",
   "bin": {
     "bckp": "./bin/run"
