@@ -40,6 +40,18 @@ export function isFileTypeSupported(type: string): boolean {
 	return SUPPORTED_FILE_TYPES.includes(type);
 }
 
+export const statPath = (() => {
+	const cache: Map<string, fs.Stats> = new Map();
+	return (p: string) => {
+		if (cache.has(p)) {
+			return cache.get(p) as fs.Stats;
+		}
+		const stat = fs.statSync(p);
+		cache.set(p, stat);
+		return stat;
+	};
+})();
+
 export async function getTotalFilesCount(
 	dirPath: string,
 	shouldIgnore: (entryPath: string) => boolean = () => true,
@@ -65,7 +77,7 @@ export async function getTotalFilesCount(
 		} else {
 			// omit dead symbolic links
 			try {
-				const stats = await fs.promises.stat(fullPath);
+				const stats = await statPath(fullPath);
 				if (stats.isFile() || stats.isSymbolicLink()) {
 					totalSize += stats.size;
 				}
