@@ -15,11 +15,11 @@ commmand to create archives for backups
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g projects_backuper
+$ npm install -g better-tar
 $ bckp COMMAND
 running command...
 $ bckp (-v|--version|version)
-projects_backuper/1.0.1 linux-x64 node-v14.16.0
+better-tar/1.0.1 linux-x64 node-v14.16.0
 $ bckp --help [COMMAND]
 USAGE
   $ bckp COMMAND
