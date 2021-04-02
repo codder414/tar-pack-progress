@@ -115,49 +115,6 @@ class ProjectsBackuper extends Command {
 
 		const progressBar = new ProgressBarTTY(totalFilesNum, totalSize, formatter);
 		const output = fs.createWriteStream(archivePath);
-		// const self = this;
-		// const tarArchive = tar.create(
-		// 	{
-		// 		gzip: enableGzip,
-		// 		cwd: targetDirPath,
-		// 		filter(p, stat) {
-		// 			totalF++;
-		// 			if (isPathShouldExclude(p)) {
-		// 				return false;
-		// 			}
-		// 			const realStat: fs.Stats = stat as any;
-		// 			if (
-		// 				realStat.isDirectory() ||
-		// 				realStat.isBlockDevice() ||
-		// 				realStat.isFIFO() ||
-		// 				realStat.isCharacterDevice() ||
-		// 				realStat.isSocket()
-		// 			) {
-		// 				return false;
-		// 			}
-		// 			if (!isTTY) {
-		// 				self.log(`${p} ${realStat.size}`);
-		// 			}
-		// 			return true;
-		// 		}
-		// 	},
-		// 	[targetDirName]
-		// );
-		// const reportProgressTransform = createTransform((chunk) => {
-		// 	totalBytes += chunk.length;
-		// 	progressBar.update(totalBytes, {
-		// 		file: currentFile,
-		// 		files: `${totalF}/${totalFilesNum}`
-		// 	});
-		// });
-		// pipeline(tarArchive, reportProgressTransform, output, (err) => {
-		// 	console.log(err);
-		// }).on('close', () => {
-		// 	if (isTTY) {
-		// 		logger.info(`Total size: ${chalk.bold(convertToHuman(totalBytes, 2))}`);
-		// 	}
-		// });
-
 		const tarOptions: tarFs.PackOptions = {
 			map: (header) => {
 				totalF++;
@@ -176,8 +133,15 @@ class ProjectsBackuper extends Command {
 				if (excludedEntries.some((pattern) => micromatch.isMatch(mpath, pattern))) {
 					return true;
 				} else {
-					const stat = statPath(mpath);
-					return stat.isFIFO() || stat.isBlockDevice() || stat.isSocket();
+					try {
+						const stat = statPath(mpath);
+						return stat.isFIFO() || stat.isBlockDevice() || stat.isSocket();
+					} catch (err) {
+						if (err.code !== 'ENOENT') {
+							throw err;
+						}
+						return true;
+					}
 				}
 			};
 		}
@@ -225,7 +189,5 @@ class ProjectsBackuper extends Command {
 		}
 	}
 }
-
-// class MyTar extends tar.Pack {}
 
 export = ProjectsBackuper;
