@@ -41,13 +41,13 @@ export function isFileTypeSupported(type: string): boolean {
 }
 
 export const statPath = (() => {
-	const cache: Map<string, fs.Stats> = new Map();
+	// const cache: Map<string, fs.Stats> = new Map();
 	return (p: string) => {
-		if (cache.has(p)) {
-			return cache.get(p) as fs.Stats;
-		}
+		// if (cache.has(p)) {
+		// 	return cache.get(p) as fs.Stats;
+		// }
 		const stat = fs.statSync(p);
-		cache.set(p, stat);
+		// cache.set(p, stat);
 		return stat;
 	};
 })();
@@ -91,6 +91,38 @@ export async function getTotalFilesCount(
 	}
 
 	return { totalSize, filesNum: totalNumberOfFiles };
+}
+function getDirPath(basePath: string, dirName: string): string {
+	return path.resolve(path.join(basePath, dirName));
+}
+export async function getTotalFilesCountPerf(
+	dirPath: string,
+	shouldIgnore = (p: string) => true
+): Promise<{ totalSize: number; filesNum: number }> {
+	const stack = [getDirPath(dirPath, '/')];
+	let filesNum = 0;
+	let totalSize = 0;
+	while (stack.length > 0) {
+		const firstPath = stack.shift() as string;
+		const dir = await fs.promises.opendir(firstPath);
+		for await (const dirent of dir) {
+			if (shouldIgnore(getDirPath(firstPath, dirent.name))) {
+				continue;
+			}
+			if (dirent.isFile()) {
+				filesNum++;
+				totalSize += (await fs.promises.stat(getDirPath(firstPath, dirent.name))).size;
+			} else if (dirent.isSymbolicLink()) {
+				filesNum++;
+			} else if (dirent.isBlockDevice() || dirent.isSocket() || dirent.isCharacterDevice() || dirent.isFIFO()) {
+			} else if (dirent.isDirectory()) {
+				stack.unshift(getDirPath(firstPath, dirent.name));
+			} else {
+				throw new Error('Unknown file type!');
+			}
+		}
+	}
+	return { totalSize, filesNum };
 }
 
 export const createConvertToHumanFn = (enableRawBytes: boolean) => (...args: Parameters<typeof convertBytesToHuman>) =>
