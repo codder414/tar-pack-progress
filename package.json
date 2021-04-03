@@ -1,10 +1,10 @@
 {
   "name": "better-tar",
-  "description": "commmand to create archives for backups ",
+  "description": "commmand to create archives with nice progress bar and additional info",
   "version": "1.0.5",
   "author": "nurik",
   "bin": {
-    "bckp": "./bin/run"
+    "btar": "./bin/run"
   },
   "bugs": "https://github.com/projects/projects_backuper/issues",
   "dependencies": {
@@ -43,7 +43,7 @@
   "license": "MIT",
   "main": "lib/index.js",
   "oclif": {
-    "bin": "bckp"
+    "bin": "btar"
   },
   "repository": "projects/projects_backuper",
   "scripts": {
