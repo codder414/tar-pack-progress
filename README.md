@@ -19,7 +19,7 @@ $ npm install -g better-tar
 $ bckp COMMAND
 running command...
 $ bckp (-v|--version|version)
-better-tar/1.0.4 linux-x64 node-v14.16.0
+better-tar/1.0.5 linux-x64 node-v14.16.0
 $ bckp --help [COMMAND]
 USAGE
   $ bckp COMMAND
