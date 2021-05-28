@@ -17,6 +17,9 @@ $ cd tar-pack-progress
 $ sudo npx  oclif-dev pack:deb # this will generate deb package for various platforms (amd64 and arm64 for now)
 $ sudo dpkg -i dist/btar_<platform>*.deb # will include all dependencies (including nodejs itself!)
 ```
+# DEMO
+
+[![asciicast](https://asciinema.org/a/H8gS7qS2lwkSFKhuwn5g7TeVm.svg)](https://asciinema.org/a/H8gS7qS2lwkSFKhuwn5g7TeVm)
 
 <!-- toc -->
 * [Install](#install)
