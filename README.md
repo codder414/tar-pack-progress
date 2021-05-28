@@ -19,6 +19,7 @@ $ sudo dpkg -i dist/btar_<platform>*.deb # will include all dependencies (includ
 ```
 
 <!-- toc -->
+* [Install](#install)
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
@@ -29,7 +30,7 @@ $ npm install -g tar-pack-progress
 $ btar COMMAND
 running command...
 $ btar (-v|--version|version)
-tar-pack-progress/1.0.5 linux-x64 node-v14.17.0
+tar-pack-progress/1.0.6 linux-x64 node-v14.17.0
 $ btar --help [COMMAND]
 USAGE
   $ btar COMMAND
