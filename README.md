@@ -1,4 +1,4 @@
-projects_backuper
+tar-pack-progress
 =================
 
 commmand to create archives with progress bar and details. (simlinks support)
@@ -15,11 +15,11 @@ commmand to create archives with progress bar and details. (simlinks support)
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g better-tar
+$ npm install -g tar-pack-progress
 $ btar COMMAND
 running command...
 $ btar (-v|--version|version)
-better-tar/1.0.5 linux-x64 node-v14.16.0
+tar-pack-progress/1.0.5 linux-x64 node-v14.16.0
 $ btar --help [COMMAND]
 USAGE
   $ btar COMMAND
