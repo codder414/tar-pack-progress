@@ -17,7 +17,6 @@ import {
 	statPath
 } from './utils';
 import { pipeline } from 'stream';
-import * as tar from 'tar';
 class ProjectsBackuper extends Command {
 	static description = 'Backup dir with progress and ignore syntax';
 
