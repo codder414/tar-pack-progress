@@ -1,5 +1,5 @@
 {
-  "name": "better-tar",
+  "name": "tar-pack-progress",
   "description": "commmand to create archives with nice progress bar and additional info",
   "version": "1.0.5",
   "author": "nurik",
