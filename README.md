@@ -11,7 +11,7 @@ commmand line utility to create archives with progress bar and details. (simlink
 - doesn't support all linux types of files due to (**tas-fs** restrictions)
 - WIP
 # Install
-```
+```Bash
 $ git clone https://github.com/codder414/tar-pack-progress.git
 $ cd tar-pack-progress
 $ sudo npx  oclif-dev pack:deb # this will generate deb package for various platforms (amd64 and arm64 for now)
