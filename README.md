@@ -1,7 +1,22 @@
 tar-pack-progress
 =================
 
-commmand to create archives with progress bar and details. (simlinks support)
+commmand line utility to create archives with progress bar and details. (simlinks support)
+## Pros:
+- pretty fast
+- detailed view
+- ships as simple .deb file
+- supports arm (tested on Raspberry pi 3b)
+## Cons
+- doesn't support all linux types of files due to (**tas-fs** restrictions)
+- WIP
+# Install
+```
+$ git clone https://github.com/codder414/tar-pack-progress.git
+$ cd tar-pack-progress
+$ sudo npx  oclif-dev pack:deb # this will generate deb package for various platforms (amd64 and arm64 for now)
+$ sudo dpkg -i dist/btar_<platform>*.deb # will include all dependencies (including nodejs itself!)
+```
 
 <!-- toc -->
 * [Usage](#usage)
@@ -17,8 +32,7 @@ $ btar (-v|--version|version)
 tar-pack-progress/1.0.5 linux-x64 node-v14.17.0
 $ btar --help [COMMAND]
 USAGE
-  $ btar --from ./source_dir --to archive1.tar.gz -v --gzip --exclude '**/*.cache/**'
-  # this will create archive from source_dir and will gzip it and also excludes all .cache dirs
+  $ btar COMMAND
 ...
 ```
 <!-- usagestop -->
