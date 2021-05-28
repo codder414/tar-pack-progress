@@ -1,7 +1,7 @@
 projects_backuper
 =================
 
-commmand to create archives for backups 
+commmand to create archives with progress bar and details. (simlinks support)
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/projects_backuper.svg)](https://npmjs.org/package/projects_backuper)
@@ -16,13 +16,13 @@ commmand to create archives for backups
 <!-- usage -->
 ```sh-session
 $ npm install -g better-tar
-$ bckp COMMAND
+$ btar COMMAND
 running command...
-$ bckp (-v|--version|version)
+$ btar (-v|--version|version)
 better-tar/1.0.5 linux-x64 node-v14.16.0
-$ bckp --help [COMMAND]
+$ btar --help [COMMAND]
 USAGE
-  $ bckp COMMAND
+  $ btar COMMAND
 ...
 ```
 <!-- usagestop -->
